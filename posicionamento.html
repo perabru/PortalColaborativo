@@ -1,0 +1,64 @@
+<html>
+
+    <head>
+        <title>
+            Portal Colaborativo
+        </title>
+
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <style>
+          /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+          #map {
+            height: 100%;
+          }
+          /* Optional: Makes the sample page fill the window. */
+          html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        </style>
+        
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+
+<script src="scripts/posicionamento.js"></script>
+
+    </head>
+
+    <body>
+
+
+
+                <label>Latitude:</label>
+                <input type="text" id="txtLat"><br>
+                <label>Longitude</label>
+                <input type="text" id="txtLong"><br>
+                <label>Data</label>
+                <input type="datetime-local"><br>
+                <button onclick="LatLog()">Get Lat Long</button>
+
+
+
+
+
+
+
+
+          
+            
+
+
+
+
+
+
+
+    </body>
+
+</html>
