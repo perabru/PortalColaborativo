@@ -12,6 +12,11 @@
      };
      // Initialize Firebase
      firebase.initializeApp(firebaseConfig);
+
+
+    
+ 
+
    
 var queryString = decodeURIComponent(window.location.search);
 
@@ -23,6 +28,18 @@ if(meuUid == null){
     window.location.href="index.html";
 }
  
+var refCadastro = firebase.database().ref("cadastro");
+
+
+
+refCadastro.child(atob(meuUid)).on("child_added", snap=>{
+
+
+   document.getElementById("lblNome").innerHTML = snap.child("nome").val();
+
+   //alert(snap.child("nome").val());
+});
+
 
 function LatLog(){
 
@@ -38,7 +55,34 @@ function showPosition(position){
     
     document.getElementById("txtLat").value = position.coords.latitude;
     document.getElementById("txtLong").value = position.coords.longitude;
+    
+
+
+   latlon=new google.maps.LatLng(document.getElementById("txtLat").value, document.getElementById("txtLong").value)
+  mapholder=document.getElementById('mapholder')
+  mapholder.style.height='500px';
+  mapholder.style.width='750px';
+ 
+  var myOptions={
+  center:latlon,zoom:14,
+  mapTypeId:google.maps.MapTypeId.ROADMAP,
+  mapTypeControl:false,
+  navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+  };
+  var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
+  var marker=new google.maps.Marker({position:latlon,map:map,title:"Você está Aqui!"});
+
+
+
+    var insert = refCadastro.child(atob(meuUid)).child("historico").push({
+
+        mLatitude:  document.getElementById("txtLat").value,
+        mLongitude:  document.getElementById("txtLong").value,
+        TIMESTAMP: document.getElementById("txtData").value
+    });
+
 }
 
 
  
+
